@@ -5,6 +5,7 @@ const homeRoutes = require('./routes/home')
 const addCourseRoutes = require('./routes/addCourse')
 const coursesRoutes = require('./routes/courses')
 const settingsRoutes = require('./routes/settings')
+const basketRoutes = require('./routes/card')
 const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: 'hbs'
@@ -19,6 +20,7 @@ app.use('/', homeRoutes)
 app.use('/add-course', addCourseRoutes)
 app.use('/courses', coursesRoutes)
 app.use('/settings', settingsRoutes)
+// app.use('/card/add', basketRoutes)
 
 const PORT = process.env.PORT || 5000
 

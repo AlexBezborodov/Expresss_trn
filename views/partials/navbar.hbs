@@ -26,6 +26,15 @@
                 <a href="/add-course">Add course</a>
               </li>
               {{/if}}
+              {{#if isCard}}
+                <li class="active">
+                  <a href="/card">Basket</a>
+                </li>
+              {{else}}
+                <li>
+                  <a href="/card">Basket</a>
+                </li>
+              {{/if}}
               {{#if isSet}}
               <li class="active">
                 <a href="/Settings">Settings</a>
@@ -61,6 +70,15 @@
   {{else}}
     <li>
       <a href="/add-course">Add course</a>
+    </li>
+  {{/if}}
+  {{#if isCard}}
+    <li class="active">
+      <a href="/card">Basket</a>
+    </li>
+  {{else}}
+    <li>
+      <a href="/card">Basket</a>
     </li>
   {{/if}}
   {{#if isSet}}

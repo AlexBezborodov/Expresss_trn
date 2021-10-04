@@ -20,3 +20,6 @@
 .course .price.big {
     font-size: 2.5rem;
 }
+.flex {
+    display: flex;
+}
