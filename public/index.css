@@ -1,3 +1,6 @@
+body {
+    min-width: 400px;
+}
 .nav-wrapper {
     padding: 0 2rem;
 }
@@ -23,3 +26,20 @@
 .flex {
     display: flex;
 }
+h1 {
+    text-align: center;
+}
+.table {
+   width: 70%;
+    margin: 1vw auto;
+}
+.divider-width {
+    width: 70%;
+    margin: 0 auto;
+}
+.text-bold {
+    font-weight: bold;
+}
+.text-align {
+    text-align: center;
+ }
