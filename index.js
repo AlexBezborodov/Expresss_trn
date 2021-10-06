@@ -7,6 +7,7 @@ const addCourseRoutes = require('./routes/addCourse')
 const coursesRoutes = require('./routes/courses')
 const settingsRoutes = require('./routes/settings')
 const basketRoutes = require('./routes/card')
+
 const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: 'hbs'

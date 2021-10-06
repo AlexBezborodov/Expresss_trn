@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
 })
 router.delete('/remove/:id', async (req, res) => {
   const card = await Card.remove(req.params.id)
-  console.log('ROUTES RES', res)
+  console.log('+++++++++++REQ',req.params.id)
   res.status(200).json(card)
 })
 

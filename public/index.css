@@ -32,10 +32,12 @@ h1 {
 .table {
    width: 70%;
     margin: 1vw auto;
+    display: flex;
+    align-items: center;
 }
 .divider-width {
     width: 70%;
-    margin: 0 auto;
+    margin: 1vw auto;
 }
 .text-bold {
     font-weight: bold;

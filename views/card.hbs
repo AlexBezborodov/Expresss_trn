@@ -11,17 +11,21 @@
       </div>
     </div>
     <div class="divider divider-width"></div>
+
+      <div class="courses-wrapper">
     {{#each courses}}
-      <div class="row table">
-        <div class="col s4 m7 l8 ">{{title}}</div>
-        <div class="col s3 m2 l2 text-align">
-          {{count}}
+        <div class="row table">
+          <div class="col s4 m7 l8 ">{{title}}</div>
+          <div class="col s3 m2 l2 text-align">
+            {{count}}
+          </div>
+          <div class="col s5 m3 l2">
+            <button class="btn btn small deep-orange accent-3 js-remove" data-id="{{id}}" >Del</button>
+          </div>
         </div>
-        <div class="col s5 m3 l2">
-          <button class="btn btn small deep-orange accent-3 js-remove" data-id="{{id}}" >Del</button>
-        </div>
-      </div>
     {{/each}}
+      </div>
+
     <div class="divider divider-width"></div>
     <p  class="table">Price: <strong class="price"> {{price}}</strong></p>
 
