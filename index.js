@@ -33,7 +33,10 @@ const PASSWORD = 'yWw1Rr3feu6Do9FE'
 const URL = `mongodb+srv://abe:${PASSWORD}@cluster0.3m1uj.mongodb.net/shop`
 async function start() {
   try {
-    await mongoose.connect( URL, { useNewUrlParser: true } )
+    await mongoose.connect( URL, {
+      useNewUrlParser: true,
+      // useFindAndModify: false
+    })
     app.listen(PORT, () => {
       console.log(`server is running on port: ${PORT}`)
     })

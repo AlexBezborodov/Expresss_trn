@@ -45,3 +45,11 @@ h1 {
 .text-align {
     text-align: center;
  }
+.centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centered button {
+    margin: 1vw auto;
+}

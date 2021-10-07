@@ -36,5 +36,8 @@ router.get('/:id', async (req, res) => {
     course
   })
 })
+router.post('/remove', (req, res) => {
+
+})
 
 module.exports = router
