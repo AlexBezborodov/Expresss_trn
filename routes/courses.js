@@ -5,6 +5,9 @@ const Course = require('../models/course')
 
 router.get('/', async (req,res) => {
   const courses = await Course.find()
+    .populate('userId', 'email name')
+    .select('price title url')
+
   res.render('courses',{
     title: 'Courses',
     isCourse: true,
@@ -36,7 +39,13 @@ router.get('/:id', async (req, res) => {
     course
   })
 })
-router.post('/remove', (req, res) => {
+router.post('/remove', async (req, res) => {
+ try {
+   await Course.deleteOne({_id: req.body.id})
+   res.redirect('/courses')
+ } catch(e) {
+  console.log(e)
+ }
 
 })
 

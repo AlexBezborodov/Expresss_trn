@@ -29,6 +29,9 @@
     <div class="divider divider-width"></div>
     <p  class="table">Price: <strong class="price"> {{price}}</strong></p>
 
+    <form action="/orders" method="post">
+      <button type="submit" class="btn">Orders</button>
+    </form>
   {{else}}
     <p>Empty Basket</p>
   {{/if}}

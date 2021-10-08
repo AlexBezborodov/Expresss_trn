@@ -53,3 +53,6 @@ h1 {
 .centered button {
     margin: 1vw auto;
 }
+.mt {
+    margin-top: 2rem;
+}

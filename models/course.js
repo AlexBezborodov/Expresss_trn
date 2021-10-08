@@ -9,8 +9,17 @@ const course = new Schema({
     type: Number,
     required: true
   },
-  url: String
+  url: String,
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
+})
 
+course.method('toClient', function() {
+  const course = this.toObject()
+  course.id = course._id
+  delete course._id
 })
 
 module.exports = model('Course', course)
