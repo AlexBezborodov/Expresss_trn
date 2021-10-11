@@ -31,12 +31,11 @@ router.get('/', async (req, res) => {
   // const card = await Card.fetch()
   const user = await req.user
     .populate('cart.items.courseId')
-  console.log( user.cart.items)
   const courses = mapCartItems(user.cart)
   res.render('card', {
   title: 'Basket',
     isCard : true,
-    courses,
+    courses: courses,
     price: computePrice(courses)
   })
 })

@@ -20,7 +20,7 @@ const userSchema = new Schema({
         courseId: {
           type: Schema.Types.ObjectId,
           ref: 'Course',
-          required: true,
+          required: true
         }
       }
     ]
@@ -58,6 +58,11 @@ userSchema.methods.removeFromCart = function (id) {
     items[idx].count--
   }
   this.cart = {items}
+  return this.save()
+}
+
+userSchema.methods.clearCart = function () {
+  this.cart = {items: [] }
   return this.save()
 }
 module.exports = model('User', userSchema)
