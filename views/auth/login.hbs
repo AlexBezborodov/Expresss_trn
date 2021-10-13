@@ -8,7 +8,7 @@
     </div>
     <div id="login" class="col s6 offset-s3">
 
-      <form action="/login" method="post">
+      <form action="/auth/login#login" method="post">
         <h4>Enter to Courses shop</h4>
         <div class="input-field">
           <input name="email"  id="email" type="email" class="validate" required>
@@ -25,7 +25,7 @@
 
     </div>
     <div id="registration" class="col s6 offset-s3">
-      <form action="/login" method="post">
+      <form action="/auth/login#registration" method="post">
         <h4>Registration form</h4>
         <div class="input-field">
           <input name="remail"  id="remail" type="email" class="validate" required>
@@ -33,7 +33,7 @@
           <span class="helper-text" data-error="Enter email" ></span>
         </div>
         <div class="input-field">
-          <input name="rpassword"  id="rpassword" type="password" class="validate" required min="6">
+          <input name="rpassword"  id="rpassword" type="password" class="validate" required min="4">
           <label for="rpassword">Password</label>
           <span class="helper-text" data-error="Enter password min 6 characters" data-success="right"></span>
         </div>
