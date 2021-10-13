@@ -53,6 +53,15 @@
                 <a href="/Settings">Settings</a>
               </li>
               {{/if}}
+              {{#if isLogin}}
+                <li class="active">
+                  <a href="/login">Login</a>
+                </li>
+              {{else}}
+                <li>
+                  <a href="/login">LogOut</a>
+                </li>
+              {{/if}}
     </ul>
   </div>
 </nav>
@@ -106,6 +115,15 @@
   {{else}}
     <li>
       <a href="/Settings">Settings</a>
+    </li>
+  {{/if}}
+  {{#if isLogin}}
+    <li class="active">
+      <a href="/login">Login</a>
+    </li>
+  {{else}}
+    <li>
+      <a href="/login">LogOut</a>
     </li>
   {{/if}}
 </ul>
