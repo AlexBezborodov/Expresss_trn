@@ -1,11 +1,48 @@
 const {Router} = require('express')
+ const User = require('../models/user')
 const router = Router()
 
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
   res.render('auth/login', {
     title: 'Login',
-    isLogin: false
+    isLogin: true
   })
+})
+router.get('/logout', (req, res) => {
+ req.session.destroy(() => {
+   res.redirect('/auth/login#login')
+ })
+
+})
+
+router.post('/login', async (req, res) => {
+  const user = await User.findById('615ff5d6c718abef863ec747')
+  req.session.user = user
+  req.session.isAuthenticated = true
+  req.session.save( err => {
+    if (err) {
+      throw err
+    }
+    res.redirect('/')
+  })
+
+})
+
+router.post('/register', async (req, res) => {
+  try {
+   const {email, password, confirm, name} = req.body
+   const candidate = await User.findOne({email})
+    if (candidate) {
+      res.redirect('/auth/login#register')
+    }else {
+      const user = new User({email, name, password, cart: {items: []}});
+      debugger;
+      await user.save();
+      res.redirect('/auth/login#login')
+    }
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 module.exports = router
