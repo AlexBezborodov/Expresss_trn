@@ -15,6 +15,7 @@ const basketRoutes = require('./routes/card')
 const ordersRoutes = require('./routes/orders')
 const User =require('./models/user')
 const loginRoutes = require('./routes/auth')
+const csrf = require('csurf');
 
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
@@ -55,6 +56,7 @@ app.use(session({
   saveUninitialized: false,
   store
 }))
+app.use(csrf())
 app.use(varMiddleware)
 app.use(userMiddleware)
 

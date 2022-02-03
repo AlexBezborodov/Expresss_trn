@@ -30,6 +30,7 @@
     <p  class="table">Price: <strong class="price"> {{price}}</strong></p>
 
     <form action="/orders" method="POST">
+    <input type="hidden" name="_csrf" value="{{csrf}}">
       <button type="submit" class="btn">Orders</button>
     </form>
   {{else}}
