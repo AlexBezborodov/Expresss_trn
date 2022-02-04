@@ -16,6 +16,7 @@ const ordersRoutes = require('./routes/orders')
 const User =require('./models/user')
 const loginRoutes = require('./routes/auth')
 const csrf = require('csurf');
+const flash =require('connect-flash')
 
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
@@ -57,6 +58,7 @@ app.use(session({
   store
 }))
 app.use(csrf())
+app.use(flash())
 app.use(varMiddleware)
 app.use(userMiddleware)
 

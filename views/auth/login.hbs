@@ -10,6 +10,9 @@
 
       <form action="/auth/login" method="post">
         <h4>Enter to Courses shop</h4>
+        {{#if logError}}
+        <p class="alert">{{logError}}</p>
+        {{/if}}
         <div class="input-field">
           <input name="email"  id="email" type="email" class="validate" required>
           <label for="title">Email</label>
@@ -28,6 +31,10 @@
     <div id="registration" class="col s6 offset-s3">
       <form action="/auth/register" method="post">
         <h4>Registration form</h4>
+
+        {{#if regError}}
+        <p class="alert">{{regError}}</p>
+        {{/if}}
         <div class="input-field">
           <input name="email"  id="remail" type="email" class="validate" required>
           <label for="remail">Email</label>

@@ -7,6 +7,8 @@ router.get("/login", (req, res) => {
   res.render("auth/login", {
     title: "Login",
     isLogin: true,
+    logError: req.flash('logError'),
+    regError: req.flash('regError')
   });
 });
 router.get("/logout", (req, res) => {
@@ -20,6 +22,7 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const candidate = await User.findOne({ email });
     if (candidate) {
+
       const areSame = await bcrypt.compare(password, candidate.password);
       if (areSame) {
         // const user = await User.findById('615ff5d6c718abef863ec747')
@@ -32,9 +35,11 @@ router.post("/login", async (req, res) => {
           res.redirect("/");
         });
       } else {
+        req.flash('logError', 'Wrong login or password')
         res.redirect("/auth/login#login");
       }
     } else {
+      req.flash('logError', 'There is no such user')
       res.redirect("/auth/login#login");
     }
   } catch (e) {
@@ -47,7 +52,8 @@ router.post("/register", async (req, res) => {
     const { email, password, confirm, name } = req.body;
     const candidate = await User.findOne({ email });
     if (candidate) {
-      res.redirect("/auth/login#register");
+      req.flash('regError', ' User with this email already exist')
+      res.redirect("/auth/login#registration");
     } else {
       const hashPassword = await bcrypt.hash(password, 10)
       const user = new User({ email, name, password: hashPassword, cart: { items: [] } });
