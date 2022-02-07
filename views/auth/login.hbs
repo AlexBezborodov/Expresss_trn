@@ -29,7 +29,7 @@
 
     </div>
     <div id="registration" class="col s6 offset-s3">
-      <form action="/auth/register" method="post">
+      <form action="/auth/register" method="post" >
         <h4>Registration form</h4>
 
         {{#if regError}}
@@ -41,19 +41,19 @@
           <span class="helper-text" data-error="Enter email" ></span>
         </div>
         <div class="input-field">
-          <input name="name"  id="confirm" type="text" class="validate" required >
-          <label for="name">Enter your name</label>
-          <span class="helper-text" data-error="Enter name" data-success="right"></span>
-        </div>
-        <div class="input-field">
           <input name="password"  id="rpassword" type="password" class="validate" required min="4">
           <label for="rpassword">Password</label>
           <span class="helper-text" data-error="Enter password min 6 characters" data-success="right"></span>
         </div>
         <div class="input-field">
-          <input name="confirm"  id="confirm" type="password" class="validate" required min="6">
+          <input name="confirm"  id="pswrdconfirm" type="password" class="validate" required min="6">
           <label for="confirm">Confirm password</label>
           <span class="helper-text" data-error="Enter password min 6 characters" data-success="right"></span>
+        </div>
+        <div class="input-field">
+          <input name="name"  id="confirm" type="text" class="validate" required >
+          <label for="name">Enter your name</label>
+          <span class="helper-text" data-error="Enter name" data-success="right"></span>
         </div>
         <input type="hidden" name="_csrf" value="{{csrf}}">
         <button class="btn btn-primary" type="submit">Registration</button>
