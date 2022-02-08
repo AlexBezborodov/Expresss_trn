@@ -18,10 +18,14 @@ const loginRoutes = require('./routes/auth')
 const csrf = require('csurf');
 const flash =require('connect-flash')
 const keys = require('./keys')
+const errorHandler = require('./middleware/error')
+const profileRoutes = require('./routes/profile')
+
 
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
-const req = require('express/lib/request')
+// const req = require('express/lib/request')
+const fileMiddleware = require('./middleware/file')
 // const PASSWORD = 'yWw1Rr3feu6Do9FE'
 // const MONGODB_URI = `mongodb+srv://abe:${PASSWORD}@cluster0.3m1uj.mongodb.net/shop`
 
@@ -40,18 +44,8 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 
-// app.use(async (req, res, next) => {
-//   try{
-//     const user = await User.findById('615ff5d6c718abef863ec747')
-//     req.user = user
-//     next()
-//   }catch(e) {
-//     console.log(e)
-//   }
-// })
-
-
 app.use(express.static(path.join(__dirname, 'public')))
+app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use(express.urlencoded({extended: true}))
 app.use(session({
   secret: keys.SESSION_SECRET,
@@ -59,6 +53,7 @@ app.use(session({
   saveUninitialized: false,
   store
 }))
+app.use(fileMiddleware.single('avatar'))
 app.use(csrf())
 app.use(flash())
 app.use(varMiddleware)
@@ -71,6 +66,9 @@ app.use('/settings', settingsRoutes)
 app.use('/card', basketRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/auth', loginRoutes)
+app.use('/profile', profileRoutes)
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
@@ -78,17 +76,8 @@ async function start() {
   try {
     await mongoose.connect( keys.MONGODB_URI, {
       useNewUrlParser: true,
-      // useFindAndModify: false
+      //useFindAndModify: false
     })
-    // const candidate = await User.findOne()
-    // if (!candidate) {
-    //   const user = new User({
-    //     email: 'abe@test.ua',
-    //     name: 'Alex',
-    //     cart: {items: []}
-    //   })
-    //   await user.save()
-    // }
     app.listen(PORT, () => {
       console.log(`server is running on port: ${PORT}`)
     })

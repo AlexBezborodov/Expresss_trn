@@ -45,6 +45,15 @@
         <!--                  <a href="/orders">Orders</a>-->
         <!--                </li>-->
           <!--              {{/if}}-->
+        {{#if isProfile}}
+          <li class="active">
+            <a href="/profile">Profile</a>
+          </li>
+        {{else}}
+          <li>
+            <a href="/profile">Profile</a>
+          </li>
+        {{/if}}
         {{#if isSet}}
           <li class="active">
             <a href="/Settings">Settings</a>
@@ -115,6 +124,15 @@
     <!--                  <a href="/orders">Orders</a>-->
     <!--                </li>-->
       <!--              {{/if}}-->
+    {{#if isProfile}}
+      <li class="active">
+        <a href="/profile">Profile</a>
+      </li>
+    {{else}}
+      <li>
+        <a href="/profile">Profile</a>
+      </li>
+    {{/if}}
     {{#if isSet}}
       <li class="active">
         <a href="/Settings">Settings</a>
@@ -124,6 +142,7 @@
         <a href="/Settings">Settings</a>
       </li>
     {{/if}}
+
     <li>
       <a href="/auth/logout">Logout</a>
     </li>
