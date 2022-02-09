@@ -4,6 +4,11 @@ const nodemaailer = require('nodemailer')
 const sendgrid = require('nodemailer-sendgrid-transport')
 const bcrypt = require('bcryptjs')
 const router = Router();
+const {  validationResult } = require('express-validator');
+const keys = require('../keys')
+const { registerValidators } = require('../utils/validators')
+
+
 const keys = require('../keys')
 const regEmail = require('../routes/emails/registration')
 
@@ -58,21 +63,20 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", registerValidators, async (req, res) => {
   try {
-    const { email, password, confirm, name } = req.body;
-    const candidate = await User.findOne({ email });
-    if (candidate) {
-      req.flash('regError', ' User with this email already exist')
-      res.redirect("/auth/login#registration");
-    } else {
-      const hashPassword = await bcrypt.hash(password, 10)
-      const user = new User({ email, name, password: hashPassword, cart: { items: [] } });
-      await user.save();
-      await transporter.sendMail(regEmail(email))
-      res.redirect("/auth/login#login");
-      
+    const { email, password, name } = req.body;
+    // const candidate = await User.findOne({ email });
+
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) {
+      req.flash('regError', errors.array()[0].msg)
+      return res.status(422).redirect("/auth/login#registration")
     }
+    const hashPassword = await bcrypt.hash(password, 10)
+    const user = new User({ email, name, password: hashPassword, cart: { items: [] } });
+    await user.save();
+    res.redirect("/auth/login#login");
   } catch (e) {
     console.log(e);
   }
